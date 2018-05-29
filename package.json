@@ -1,0 +1,53 @@
+{
+  "name": "doc-enforcer",
+  "version": "0.5.0",
+  "description": "Enforce documentation in github-flavored readme files to eliminate oral tradition & guarantee support for the next dev",
+  "main": "doc-enforcer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "documentation",
+    "doc",
+    "docs",
+    "written down",
+    "require",
+    "enforce",
+    "guarantee",
+    "ast",
+    "code",
+    "introspection",
+    "abstract syntax tree",
+    "metaprogramming",
+    "runtime",
+    "arbitrary",
+    "descriptions",
+    "description",
+    "bus",
+    "bus factor",
+    "oral tradition",
+    "linkable",
+    "markdown",
+    "md",
+    "github",
+    "generator",
+    "automatic",
+    "test",
+    "tests"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "eachvar": "^1.0.1",
+    "espree": "^3.5.4",
+    "esquery": "^1.0.1",
+    "glob": "^7.1.2",
+    "lodash-getpath": "^0.2.4",
+    "pretty": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jnvm/dbq.git"
+  },
+}
