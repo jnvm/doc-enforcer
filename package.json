@@ -35,7 +35,7 @@
     "test",
     "tests"
   ],
-  "author": "",
+  "author": "jnvm",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jnvm/dbq.git"
-  },
+    "url": "https://github.com/jnvm/doc-enforcer.git"
+  }
 }
