@@ -157,8 +157,8 @@ require('doc-enforcer')([{
 		return new Promise((good,bad)=>{
 			var mysql      = require('mysql');
 			var connection = mysql.createConnection({
-			  user     : 'root',
-			  password : 'none',
+			  user     : 'x',
+			  password : 'x',
 			});
 			connection.connect();
 			connection.query(`
@@ -194,8 +194,8 @@ require('doc-enforcer')([{
 		return new Promise((good,bad)=>{
 			var mysql      = require('mysql');
 			var connection = mysql.createConnection({
-			  user     : 'root',
-			  password : 'none',
+			  user     : 'x',
+			  password : 'x',
 			});
 			connection.connect();
 			connection.query(`
