@@ -12,18 +12,18 @@ See [examples](#examples) section below for ideas.
 <table><thead><tr><th>
 Table of Contents
 </th></tr></thead><tbody><tr><td><ul>
-	<li><a href="#why">Why</a></li>
-	<li><a href="#how">How</a></li>
-	<li><a href="#examples">Examples</a></li>
-		<ul>
-		<li><a href="#module-exports">module.exports</a></li>
-		<li><a href="#a-folder-structure">A Folder Structure</a></li>
-		<li><a href="#a-csv">A CSV</a></li>
-		<li><a href="#a-database-schema">A Database Schema</a></li>
-		<li><a href="#a-fancier-database-schema">A Fancier Database Schema</a></li>
-		</ul>
-	<li><a href="#contra">Contra</a></li>
-	<li><a href="#references">References</a></li>
+    <li><a href="#why">Why</a></li>
+    <li><a href="#how">How</a></li>
+    <li><a href="#examples">Examples</a></li>
+        <ul>
+        <li><a href="#moduleexports">module.exports</a></li>
+        <li><a href="#a-folder-structure">A Folder Structure</a></li>
+        <li><a href="#a-csv">A CSV</a></li>
+        <li><a href="#a-database-schema">A Database Schema</a></li>
+        <li><a href="#a-fancier-database-schema">A Fancier Database Schema</a></li>
+        </ul>
+    <li><a href="#contra">Contra</a></li>
+    <li><a href="#references">References</a></li>
 </ul></td></tr></tbody></table>
 
 ## Why
@@ -37,58 +37,68 @@ Table of Contents
 ## How
 
 ```javascript
-require('doc-enforcer')([ //a single function is exported which you supply an array of objects:
+require('doc-enforcer')([ //a single function exported
+	//which you supply an array of objects:
 {	// each object often called a "pattern"
-	name:""         ,// what to title this documentation section
-	markdownPath:"" ,// which markdown file this documentation should go in
-		// note these sections are <!--delimited-->, so multiple patterns
-		// may exist in one file, in any order.  Just don't add anything except the requested
-		// descriptions inside the delimiters, or they will disappear on rebuild.
-	verbose:true    ,// (true by default) true = log out success & fail; false = only fails
-	optional:false  ,// (false by default) false = throw on missing documentation; true = don't
+	name:""         ,// what to title this doc section
+	markdownPath:"" ,// which md file this doc should go in
+		// note these sections are <!--delimited-->, so N patterns
+		// may exist in one file, in any order.
+		// Just don't add anything except the requested
+		// descriptions inside the delimiters, 
+		// or they will disappear on rebuild.
+	verbose:true    ,// (default: true)
+		// true = log out success & fail; false = only fails
+	optional:false  ,// (default: false)
+		// false = throw on missing doc; true = don't
 
-	// extract a string [] either from js files by globbing, ASTing, & selecting:
+	// extract a string [] 1 of 3 ways:
+		// 1) either from js files by globbing, ASTing, & selecting:
 	ast:{
-		fileGlob:"",// string passed to npmjs.org/glob to fetch files to look in
-		selector:"",// string passed to npmjs.com/esquery to target js points of interest
+		fileGlob:"",// string passed to npmjs.org/glob to fetch js files
+		selector:"",// string passed to npmjs.com/esquery to target js
 			// this is how eslint works; plug your code into
 			// astexplorer.net or estools.github.io/esquery
 			// to understand how to make these
-		property:"",// string passed to npmjs.com/lodash-getpath to extract string []
+		property:"",// string passed to npmjs.com/lodash-getpath
+			// to extract string []
 			// from the AST nodes selected above
-			// this way you can select a prop from all items in an [] (in an [], in an [],...)
-	}
-	// or dynamically because maybe what you want to document isn't in js:
+			// this way you can select a prop
+			// from all items in an [] (in an [], in an [],...)
+	},
+		// 2) or dynamically if what you want to document isn't in js:
 	customInput({glob,fs}){
-		// note you're given glob & fs since you'll likely be manipulating files
+			// note you're given glob & fs
+			// since you'll likely be manipulating files
 		return anArrayOfStrings // or a promise for one
-	}
-	// or directly:
-	customInput:['a','b','c',...]
+	},
+		// 3) or directly:
+	customInput:['a','b','c',...],
 	
-	// if you want to customize how to format the documentation
+	// if you want to customize how to format the doc
 	// there are some presets:
-	customOutput:'ul|ol|table' //default is ul
+	customOutput:'ul|ol|table', //default is ul
 	// or a fully custom option:
 	customOutput(matchedDescriptions/* = {
 			[name]:{
 				name, - plain string of item supplied
-				formattedName, - .md form for safe bookmarking/anchoring/deeplinking & extraction
+				formattedName, - .md form for safe anchoring & extraction
 				description, - plain content of description
 				formattedDescription, - .md form for safe extraction
 				slug, - pattern + name for canonical referencing in a file
-				linkSafeSlug, - _.kebabCased slug for github-safe anchoring
-				isBlank, - whether documentation is empty
+				linkSafeSlug, - formatted slug for github-safe anchoring
+				isBlank, - whether doc is empty
 				[ast context if available] - (if you gathered items this way)
 			}
 			,...
 		}
 		*/){
-		// in case you prefer the documentation to look a very specific way,
+		// in case you prefer the doc to look a very specific way,
 		// return 1 string here to write to the markdown file.
 		// Log out the given param to see what you have to work with.
-		// Some form of the supplied formattedName and formattedDescription per item
-		// needs to exist in the returned string to preserve data across rebuilds.
+		// Some form of given formattedName and formattedDescription
+		// per item needs to exist in the returned string
+		// to preserve data across rebuilds.
 		// It should let you know if it cannot find them.
 	},
 },
@@ -157,8 +167,8 @@ require('doc-enforcer')([{
 		return new Promise((good,bad)=>{
 			var mysql      = require('mysql');
 			var connection = mysql.createConnection({
-			  user     : 'root',
-			  password : 'none',
+			  user     : 'x',
+			  password : 'x',
 			});
 			connection.connect();
 			connection.query(`
@@ -194,16 +204,19 @@ require('doc-enforcer')([{
 		return new Promise((good,bad)=>{
 			var mysql      = require('mysql');
 			var connection = mysql.createConnection({
-			  user     : 'root',
-			  password : 'none',
+			  user     : 'x',
+			  password : 'x',
 			});
 			connection.connect();
 			connection.query(`
 				select table_name,column_name,column_type
 				from information_schema.columns
 				where table_schema='test'
+				/*
+				 note you'll need the same # of rows returned
+				 as descriptions to keep
+				*/
 				union
-				/* note you'll need the same # of rows returned as descriptions to keep */
 				select table_name,'',''
 				from information_schema.tables
 				where table_schema='test'
