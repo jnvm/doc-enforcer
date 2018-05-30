@@ -1,6 +1,6 @@
 {
   "name": "doc-enforcer",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Enforce documentation in github-flavored readme files to eliminate oral tradition & guarantee support for the next dev",
   "main": "doc-enforcer.js",
   "scripts": {

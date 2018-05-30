@@ -121,13 +121,13 @@ module.exports = {
 That could look like:
 ```javascript
 require('doc-enforcer')([{
-	name:"Module exports"
-	markdownPath:"./readme.md"
-	,ast:{
+	name:"Module exports",
+	markdownPath:"./readme.md",
+	ast:{
 		fileGlob:`${__dirname}/**/wherever/they/are/**.js`,
 		selector:"AssignmentExpression[left.object.name='module'][left.property.name='exports'][right.type='ObjectExpression']",
 		property:"right.properties[].key.name",
-	}
+	},
 }])
 ```
 
@@ -258,7 +258,7 @@ require('doc-enforcer')([{
 				</td></tr>`
 			})
 			.join('\n')}</table>`
-	}
+	},
 }])
 ```
 (Or use something like [db-linter](http://npmjs.com/db-linter)!)
